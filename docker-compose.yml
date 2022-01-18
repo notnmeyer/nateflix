@@ -1,0 +1,40 @@
+---
+version: "3.8"
+
+x-service: &service-common
+  deploy:
+    restart_policy:
+      condition: on-failure
+  environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=US/Pacific
+    - UMASK_SET=022
+
+services:
+  sonarr:
+    <<: *service-common
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    volumes:
+      - ./config/sonarr:/config
+      - /Volumes/brainslug/media:/media
+    ports: [8989:8989]
+    
+  radarr:
+    <<: *service-common
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    volumes:
+      - ./config/radarr:/config
+      - /Volumes/brainslug/media:/media
+    ports: [7878:7878]
+
+  sabnzbd:
+    <<: *service-common
+    image: linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    volumes:
+      - ./config/sabnzbd:/config
+      - /Volumes/brainslug/media:/media
+    ports: [8080:8080]

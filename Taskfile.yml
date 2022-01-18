@@ -1,0 +1,9 @@
+version: "3"
+
+tasks:
+  up:
+    - docker-compose pull
+    - docker-compose up --remove-orphans -d
+
+  down:
+    - docker-compose down
