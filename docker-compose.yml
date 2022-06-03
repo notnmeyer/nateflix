@@ -18,7 +18,7 @@ services:
     container_name: sonarr
     volumes:
       - ./config/sonarr:/config
-      - /Volumes/brainslug/media:/media
+      - /mnt/brainslug/media:/media
     ports: [8989:8989]
     
   radarr:
@@ -27,7 +27,7 @@ services:
     container_name: radarr
     volumes:
       - ./config/radarr:/config
-      - /Volumes/brainslug/media:/media
+      - /mnt/brainslug/media:/media
     ports: [7878:7878]
 
   sabnzbd:
@@ -36,5 +36,5 @@ services:
     container_name: sabnzbd
     volumes:
       - ./config/sabnzbd:/config
-      - /Volumes/brainslug/media:/media
+      - /mnt/brainslug/media:/media
     ports: [8080:8080]
