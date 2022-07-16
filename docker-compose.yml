@@ -30,6 +30,15 @@ services:
       - /mnt/brainslug/media:/media
     ports: [7878:7878]
 
+  lidarr:
+    <<: *service-common
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    volumes:
+      - ./config/lidarr:/config
+      - /mnt/brainslug/media:/media
+    ports: [8686:8686]
+
   sabnzbd:
     <<: *service-common
     image: lscr.io/linuxserver/sabnzbd:latest
