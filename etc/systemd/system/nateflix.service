@@ -1,0 +1,13 @@
+[Unit]
+Description=Nateflix
+Requires=network.target,docker.service
+After=network.target,docker.service
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml --remove-orphans -d up
+ExecStartPre=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml pull
+ExecStop=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target

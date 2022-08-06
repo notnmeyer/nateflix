@@ -2,8 +2,27 @@ version: "3"
 
 tasks:
   up:
-    - docker-compose pull
-    - docker-compose up --remove-orphans -d
+    desc: start Nateflix
+    cmds:
+      - docker-compose pull
+      - docker-compose up --remove-orphans -d
 
   down:
-    - docker-compose down
+    desc: stop Nateflix
+    cmds:
+      - docker-compose down
+ 
+  install:
+    desc: Install systemd unit file and configure service
+    cmds:
+      - sudo ln -sf $(pwd)/etc/systemd/system/nateflix.service /etc/systemd/system/nateflix.service
+      - task: daemon-reload
+      - sudo systemctl enable nateflix
+
+  uninstall:
+    desc: Uninstall systemd unit
+    cmds:
+      - sudo rm -f /etc/systemd/system/nateflix.service
+
+  daemon-reload:
+    - sudo systemctl daemon-reload
