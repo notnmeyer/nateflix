@@ -4,8 +4,9 @@ Requires=network.target,docker.service
 After=network.target,docker.service
 
 [Service]
-Type=exec
-ExecStart=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml --remove-orphans -d up
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml up --remove-orphans -d
 ExecStartPre=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml pull
 ExecStop=/usr/bin/docker-compose -f /home/nate/code/nateflix/docker-compose.yml down
 
