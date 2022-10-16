@@ -39,6 +39,15 @@ services:
       - /mnt/brainslug/media:/media
     ports: [8686:8686]
 
+  readarr:
+    <<: *service-common
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    volumes:
+      - ./config/readarr:/config
+      - /mnt/brainslug/media:/media
+    ports: [8787:8787]
+
   sabnzbd:
     <<: *service-common
     image: lscr.io/linuxserver/sabnzbd:latest
