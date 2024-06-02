@@ -1,6 +1,3 @@
----
-version: "3.8"
-
 x-service: &service-common
   deploy:
     restart_policy:
