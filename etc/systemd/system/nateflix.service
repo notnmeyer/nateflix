@@ -1,6 +1,7 @@
 [Unit]
 Description=Nateflix
 Requires=docker.service
+Requires=mnt-brainslug.mount
 
 [Service]
 Type=oneshot
